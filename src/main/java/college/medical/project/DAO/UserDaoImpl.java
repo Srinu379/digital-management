@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao{
 	public void insert(UserDto user) {
 		
 		
-		String sql = "INSERT INTO USERS(id,email,userName,passWord) VALUES(?,?,?,?)";
+		String sql = "INSERT INTO users(id,email,userName,passWord) VALUES(?,?,?,?)";
 		
 		Object object[] = {user.getId(),user.getEmail(),user.getUserName(),user.getPassWord()};
 		
@@ -78,7 +78,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public UserLoginDto getUserDetails(String email) {
 		
-		String sql = "select * from USERS where email = ? ";
+		String sql = "select * from users where email = ? ";
 		
 		try {
 				
@@ -175,7 +175,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public List<MedicineDto> getMedicines() {
 		
-		String sql = "select * from medicines";
+		String sql = "select * from Medicines";
 		
 		List<MedicineDto> medcines = jdbcTemplate.query(sql,new BeanPropertyRowMapper<MedicineDto>(MedicineDto.class));
 		
