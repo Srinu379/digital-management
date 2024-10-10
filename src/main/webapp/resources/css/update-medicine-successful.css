@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.success-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 48px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #004aad;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.details {
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.details p {
+    margin-bottom: 10px;
+}
+
+.details p:last-child {
+    margin-bottom: 0;
+}
+
+.btn-back {
+    display: inline-block;
+    background-color: #004aad;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background-color: #00337a;
+}
+
+@media (max-width: 600px) {
+    .success-card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .success-icon {
+        font-size: 36px;
+    }
+}
