@@ -4,6 +4,7 @@ college\medical\project\DAO\UserDaoImpl.class
 college\medical\project\controllers\StudentController.class
 college\medical\project\DTO\MedicineDto.class
 college\medical\project\DTO\MedicineUpdateDto.class
+college\medical\project\servicelayer\RandomId.class
 college\medical\project\controllers\IssueController.class
 college\medical\project\DAO\UserDao.class
 college\medical\project\DTO\ForgotPasswordDto.class

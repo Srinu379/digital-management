@@ -1,7 +1,7 @@
 package college.medical.project.DTO;
 
 public class StudentIssueDto {
-
+	
 	private String rollNo;
 	private String studentName;
 	private String department;

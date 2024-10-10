@@ -18,6 +18,7 @@ import college.medical.project.DTO.UpdatePasswordDto;
 import college.medical.project.DTO.UserDto;
 import college.medical.project.DTO.UserIdDto;
 import college.medical.project.DTO.UserLoginDto;
+import college.medical.project.servicelayer.RandomId;
 import college.medical.project.servicelayer.Validation;
 
 @Component
@@ -31,8 +32,6 @@ public class UserDaoImpl implements UserDao{
 	public void insert(UserDto user) {
 		
 		
-		System.out.println("Inside The Dao Layer");
-		
 		String sql = "INSERT INTO USERS(id,email,userName,passWord) VALUES(?,?,?,?)";
 		
 		Object object[] = {user.getId(),user.getEmail(),user.getUserName(),user.getPassWord()};
@@ -42,8 +41,6 @@ public class UserDaoImpl implements UserDao{
 	
 	@Override
 	public void insertStudent(StudentIssueDto student) {
-		
-		System.out.println("Inside The Dao Layer");
 		
 		String sql = "INSERT INTO Students(rollNo,studentName,department,gender) VALUES(?,?,?,?)";
 		
@@ -55,19 +52,21 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public void insertIssue(StudentIssueDto student) {
 		
-		System.out.println("Inside The Dao Layer");
+		RandomId random = new RandomId();
 		
-		String sql = "INSERT INTO Issues(rollNo,description,medicine) VALUES(?,?,?)";
+		String id = random.generateUuid();
 		
-		Object object[] = {student.getRollNo(),student.getDescription(),student.getMedicine()};
+		String sql = "INSERT INTO Issues(id,rollNo,description,medicine) VALUES(?,?,?,?)";
+		
+		System.out.println(id+" --------------------------------------");
+		
+		Object object[] = {id,student.getRollNo(),student.getDescription(),student.getMedicine()};
 		
 		jdbcTemplate.update(sql,object);
 	}
 	
 	@Override
 	public void insertMedicine(MedicineDto medicine) {
-		
-		System.out.println("Inside The Dao Layer");
 		
 		String sql = "INSERT INTO Medicines(MedicineName,quantity,description) VALUES(?,?,?)";
 		
@@ -78,9 +77,6 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public UserLoginDto getUserDetails(String email) {
-		
-		
-		System.out.println("Inside The Dao Layer");
 		
 		String sql = "select * from USERS where email = ? ";
 		
@@ -149,8 +145,6 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int getCount() {
 		
-		System.out.println("Inside The Dao Layer");
-		
 		String sql = "select count(i.rollNo) from Issues i INNER JOIN Students s on i.rollNo = s.rollNo";
 		
 		int count = jdbcTemplate.queryForObject(sql,Integer.class);
@@ -159,8 +153,6 @@ public class UserDaoImpl implements UserDao{
 	}
 	@Override
 	public int getMaleCount() {
-		
-		System.out.println("Inside The Dao Layer");
 		
 		String sql = "select count(i.rollNo) from Issues i INNER JOIN Students s on i.rollNo = s.rollNo where gender = ?";
 		
@@ -172,7 +164,6 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public int getFemaleCount() {
 		
-		System.out.println("Inside The Dao Layer");
 		
 		String sql = "select count(i.rollNo) from Issues i INNER JOIN Students s on i.rollNo = s.rollNo where gender = ?";
 		
@@ -252,12 +243,12 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	public DriverManagerDataSource getDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/collegeproject?useSSL=false");
-        dataSource.setUsername("root");
-        dataSource.setPassword("Srinu379@");
-        return dataSource;
-    }
+	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+	    dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+	    dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
+	    dataSource.setUsername(System.getenv("SPRING_DATASOURCE_USERNAME"));
+	    dataSource.setPassword(System.getenv("SPRING_DATASOURCE_PASSWORD"));
+	    return dataSource;
+	}
 
 }

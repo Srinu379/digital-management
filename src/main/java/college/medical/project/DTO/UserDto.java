@@ -1,14 +1,14 @@
 package college.medical.project.DTO;
 
-import java.util.UUID;
-
+import college.medical.project.servicelayer.RandomId;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class UserDto {
 	
-	private String id = UUID.randomUUID().toString();
+	RandomId random = new RandomId();
+	private String id = random.generateUuid();
 	
 	@Email(message="Please enter a valid email address")
 	@NotBlank(message="your email cannot be blank")
