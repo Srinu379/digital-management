@@ -41,7 +41,7 @@
   <div class="form-header">
     <h2>Create Account</h2>
   </div>
-  <form:form action="process-register" modelAttribute="userRegistration" onsubmit="return validate()">
+  <form:form action="send-otp" modelAttribute="userRegistration" onsubmit="return validate()">
     <div class="form-group">
       <label for="email">Email</label>
       <form:input path="email" id="email"/>
@@ -61,7 +61,7 @@
       <form:errors path="passWord" cssClass="error"/>
     </div>
     
-    <input type="submit" value="Submit">
+    <input type="submit" value="Send-otp">
   </form:form>
 </div>
 </body>
