@@ -16,13 +16,20 @@
 <body>
     <div class="container">
         <h1><i class="fas fa-clipboard-list"></i> My Complaints Dashboard</h1>
+        
+        <div class="search-container">
+		    <form action="search-faculty" method="GET">
+		        <input type="text" name="id" placeholder="Search by Roll Number...">
+		        <button type="submit"><i class="fas fa-search"></i> Search</button>
+		    </form>
+		</div>
 
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Student Name</th>
-                        <th>Roll No</th>
+                        <th>Faculty Name</th>
+                        <th>Id</th>
                         <th>Department</th>
                         <th>Description</th>
                         <th>Medicine</th>
@@ -31,15 +38,15 @@
                 </thead>
                 <tbody>
                     <c:choose>
-                        <c:when test="${not empty students}">
-                          	<c:forEach items="${students}" var="student">
+                        <c:when test="${not empty faculty}">
+                          	<c:forEach items="${faculty}" var="faculty">
 						    	<tr>
-							        <td data-label="Student Name">${student.studentName}</td>
-							        <td data-label="Roll No">${student.rollNo}</td>
-							        <td data-label="Department">${student.department}</td>
-							        <td data-label="Description">${student.description}</td>
-							        <td data-label="Medicine">${student.medicine}</td>
-							        <td data-label="Registered Time">${student.createdAt}</td>
+							        <td data-label="Student Name">${faculty.facultyName}</td>
+							        <td data-label="Roll No">${faculty.id}</td>
+							        <td data-label="Department">${faculty.department}</td>
+							        <td data-label="Description">${faculty.description}</td>
+							        <td data-label="Medicine">${faculty.medicine}</td>
+							        <td data-label="Registered Time">${faculty.createdAt}</td>
 						    	</tr>
 							</c:forEach>
                         </c:when>

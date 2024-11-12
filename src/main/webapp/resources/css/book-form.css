@@ -8,16 +8,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .login-container {
     background-color: rgba(255, 255, 255, 0.95);
-    padding: 1.5rem;
+    padding: 1.25rem;
     border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    width: 320px;
+    width: 100%;
+    max-width: 300px;
     backdrop-filter: blur(10px);
 }
 
@@ -25,7 +28,7 @@ h2 {
     color: #1e3c72;
     text-align: center;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
 }
 
@@ -35,81 +38,105 @@ form {
 }
 
 label {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
     margin-bottom: 0.25rem;
     color: #2a5298;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
-input, select {
-    padding: 0.5rem 0.75rem;
-    margin-bottom: 0.75rem;
+input, select, .medicine-select, textarea {
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 0.5rem;
     border: 1px solid #cfd8dc;
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-input:focus, select:focus {
+input:focus, select:focus, .medicine-select:focus, textarea:focus {
     outline: none;
     border-color: #2a5298;
     box-shadow: 0 0 0 2px rgba(42, 82, 152, 0.1);
 }
 
-/* Styles for non-editable fields */
-input[name="email"], input[name="userName"] {
-    background-color: #f0f4f8;
-    color: #4a5568;
-    cursor: not-allowed;
-}
-
-select {
+select, .medicine-select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232a5298' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 0.75rem center;
+    background-position: right 0.6rem center;
     padding-right: 2rem;
 }
 
-input[type="submit"] {
-    margin-top: 1rem;
-    padding: 0.75rem;
+#medicineContainer {
+    margin-bottom: 0.5rem;
+}
+
+#medicineContainer div {
+    margin-top: 0.5rem;
+}
+
+.medicine-select {
+    margin-bottom: 0;
+}
+
+label[for='medicines[0]'] {
+    margin-top: 0.75rem;
+}
+
+input[type="submit"], #addMedicine {
+    margin-top: 0.75rem;
+    padding: 0.6rem;
     background-color: #1e3c72;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, #addMedicine:hover {
     background-color: #2a5298;
 }
 
-/* Error message styles */
-.error {
-    color: #e53e3e;
-    font-size: 0.9rem;
-    margin-top: 0.25rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Larger description input */
 textarea[name="description"] {
-    height: 100px;
+    height: 80px;
     resize: vertical;
-}
-
-br {
-    display: none;
+    margin-bottom: 0.75rem;
 }
 
 @media (max-width: 360px) {
     .login-container {
-        width: 95%;
         padding: 1rem;
     }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    input, select, .medicine-select, textarea {
+        font-size: 0.8rem;
+    }
+    
+    input[type="submit"], #addMedicine {
+        font-size: 0.85rem;
+    }
+}
+
+.error-message {
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+
+.error-message.show {
+    max-height: 50px;
 }

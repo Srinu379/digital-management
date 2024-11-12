@@ -1,13 +1,13 @@
 package college.medical.project.controllers;
 
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import college.medical.project.DAO.UserDaoImpl;
+import college.medical.project.DTO.UserDto;
 import college.medical.project.DTO.UserLoginDto;
 import college.medical.project.servicelayer.Validation;
 import jakarta.servlet.http.HttpSession;
@@ -36,8 +36,9 @@ public class LoginController {
 			return "login";
 		}
 		
-//		try {
+		try {
 			UserLoginDto userInfo = userDaoImpl.getUserDetails(user.getEmail());
+			
 			if(!validateLogin.validateLogin(user,userInfo))
 			{
 				
@@ -45,8 +46,15 @@ public class LoginController {
 				return "login";
 			}
 			
-			session.setAttribute("email",user.getEmail());
-			session.setAttribute("userName",user.getUserName());
+			UserDto userDto = userDaoImpl.getUserDetailsByEmail(user.getEmail());
+			
+			userDaoImpl.setLastLogin(user.getEmail());
+			
+			session.setAttribute("email",userDto.getEmail());
+			session.setAttribute("userName",userDto.getUserName());
+			session.setAttribute("age",userDto.getAge());
+			session.setAttribute("gender",userDto.getGender());
+			session.setAttribute("phoneNumber",userDto.getPhoneNumber());
 			session.setMaxInactiveInterval(1800);
 			
 			int totalCount = userDaoImpl.getCount();
@@ -59,11 +67,11 @@ public class LoginController {
 			model.addAttribute("femaleCount",femaleCount);
 			
 			return "homepage";	
-//		}
-//		catch(Exception e) {
-//			
-//			model.addAttribute("errorMessage","Your username or password is invalid");
-//			return "login-page";
-//		}
+		}
+		catch(Exception e) {
+			
+			model.addAttribute("errorMessage","Your username or password is invalid");
+			return "login";
+		}
 	}
 }

@@ -18,6 +18,8 @@ public class HomePageController {
 	@RequestMapping("/e-homepage")
 	public String getHomePage(Model model)
 	{
+		
+		
 		int totalCount = userDaoImpl.getCount();
 		model.addAttribute("totalCount",totalCount);
 		
@@ -89,7 +91,18 @@ public class HomePageController {
 		
 		return "update-successful";
 	}
-
+	
+	@RequestMapping("/contact-us")
+	public String getContactPage()
+	{	
+		return "contact-us";
+	}
+	
+	@RequestMapping("/about-us")
+	public String getAboutusPage()
+	{	
+		return "about-us";
+	}
 	
 }
 

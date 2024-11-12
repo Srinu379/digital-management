@@ -7,9 +7,6 @@ public class UserLoginDto {
 	@NotBlank(message="your email cannot be blank")
 	private String email;
 	
-	@NotBlank(message="your username cannot be blank")
-	private String userName;
-	
 	@NotBlank(message="your password cannot be blank")
 	private String passWord;
 
@@ -21,16 +18,6 @@ public class UserLoginDto {
 	public void setEmail(String email) {
 		
 		this.email = email;
-	}
-	
-	public String getUserName() {
-		
-		return userName;
-	}
-	
-	public void setUserName(String userName) {
-		
-		this.userName = userName;
 	}
 	
 	public String getPassWord() {

@@ -6,31 +6,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/resources/css/change-password.css' />">
 </head>
 <body>
     <div class="container">
-        <h1>Change Password</h1>
-        <form action="process-change-password" method="POST">
-        	<div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" required>
+        <div class="medical-header">
+            <div class="medical-icons">
+                <div class="clipboard">
+                    <div class="clipboard-content"></div>
+                    <div class="clipboard-content"></div>
+                    <div class="clipboard-content"></div>
+                </div>
+                <div class="money"></div>
+                <div class="calculator"></div>
+                <div class="pills">
+                    <div class="pill"></div>
+                    <div class="pill" style="background: #00D084;"></div>
+                </div>
+            </div>
+        </div>
+
+        <form action="process-change-password" method="POST" style="margin-top: 40px;">
+            <div class="form-group">
+                <input type="text" id="email" name="email" class="form-input" placeholder="Email" required>
             </div>
             <div class="form-group">
-                <label for="currentPassword">Current Password</label>
-                <input type="password" id="passWord" name="passWord" required>
+                <input type="password" id="passWord" name="passWord" class="form-input" placeholder="Current Password" required>
             </div>
             <div class="form-group">
-                <label for="newPassword">New Password</label>
-                <input type="password" id="newPassword" name="newPassword" required>
+                <input type="password" id="newPassword" name="newPassword" class="form-input" placeholder="New Password" required>
             </div>
             <div class="form-group">
-                <label for="confirmPassword">Confirm New Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="Confirm New Password" required>
             </div>
-            <button type="submit" class="btn-submit">Change Password</button>
+            <button type="submit" class="login-btn">Change Password</button>
+            
+            <div class="back-link">
+                <a href="<c:url value='profile-page' />">Back to Dashboard</a>
+            </div>
         </form>
-        <a href="<c:url value='profile-page' />" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>

@@ -6,70 +6,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computer Hardware Service - Login</title>
+    <title>Medical Services Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/resources/css/login.css' />">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script type="text/javascript">
-    	function validate()
-    	{
-    		let email = document.getElementById("email").value.trim();
-    		let userName = document.getElementById("userName").value.trim();
-    		let passWord = document.getElementById("passWord").value;
-    		let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    		
-    		if(!emailRegex.test(email))
-    		{
-    			alert("Please enter a valid email address");
-    			return false;
-    		}
-    		else if(userName.length < 3 && userName.length > 30)
-   			{
-    			alert("Your username should be in between 3 and 30");
-    			return false;
-   			}
-    		else if(passWord.length < 8)
-   			{
-    			alert("Your password should contain atleast 8 characters");
-    			return false;
-   			}
-    		return true;	
-    	}
+        function validate() {
+            let email = document.getElementById("email").value.trim();
+            let passWord = document.getElementById("passWord").value;
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if(!emailRegex.test(email)) 
+            {
+                alert("Please enter a valid email address");
+                return false;
+            }
+            else if(passWord.length < 8) 
+            {
+                alert("Your password should contain atleast 8 characters");
+                return false;
+            }
+            return true;
+        }
     </script>
 </head>
 <body>
-    <div class="login-container">
-        <h2><i class="fas fa-laptop-code"></i> Login</h2>
+    <div class="container">
+        <div class="medical-header">
+            <div class="medical-icons">
+                <div class="clipboard">
+                    <div class="clipboard-content"></div>
+                    <div class="clipboard-content"></div>
+                    <div class="clipboard-content"></div>
+                </div>
+                <div class="money"></div>
+                <div class="calculator"></div>
+                <div class="pills">
+                    <div class="pill"></div>
+                    <div class="pill" style="background: #00D084;"></div>
+                </div>
+            </div>
+        </div>
+
         <form:form action="process-login?user=user" modelAttribute="userLogin" onsubmit="return validate()">
-            <div class="input-group">
-                <label for="email"><i class="fas fa-envelope"></i> Email:</label>
-                <form:input path="email" id="email"/>
+            <div class="form-group">
+                <form:input path="email" id="email" class="form-input" placeholder="Email"/>
                 <form:errors path="email" cssClass="error"/>
             </div>
             
-            <div class="input-group">
-                <label for="userName"><i class="fas fa-user"></i> Username:</label>
-                <form:input path="userName" id="userName" />
-                <form:errors path="userName" cssClass="error"/>
-            </div>
-            
-            <div class="input-group">
-                <label for="passWord"><i class="fas fa-lock"></i> Password:</label>
-                <form:password path="passWord" id="passWord" />
+            <div class="form-group">
+                <form:password path="passWord" id="passWord" class="form-input" placeholder="Password"/>
                 <form:errors path="passWord" cssClass="error"/>
             </div>
-            
+
             <c:if test="${not empty errorMessage}">
-            	<div class="error-message show">${errorMessage}</div>
+                <div class="error-message">${errorMessage}</div>
             </c:if>
+
+            <button type="submit" class="login-btn">Login</button>
             
-            <button type="submit" class="submit-btn">
-                <i class="fas fa-sign-in-alt"></i> Login
-            </button>
+            <div class="forgot-password">
+                <a href="<c:url value='forgot-password' />">Forgot Password?</a>
+            </div>
         </form:form>
-        <div class="additional-links">
-            <a href="<c:url value='forgot-password' />" class="forgot-password">Forgot Password?</a>
-            <a href="<c:url value='register' />" class="register">Register</a>
-        </div>
     </div>
 </body>
 </html>

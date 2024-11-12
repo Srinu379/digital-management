@@ -9,9 +9,6 @@ public class Validation {
 		
 		 if(!user.getEmail().equals(userInfo.getEmail()))
 				return false;
-	
-	    if(!user.getUserName().equals(userInfo.getUserName()))
-			return false;
 		
 		else if(!user.getPassWord().equals(userInfo.getPassWord()))
 			return false;

@@ -5,18 +5,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineer Dashboard - TechFix Solutions</title>
+    <title>KLH Medical - Homepage</title>
     <link rel="stylesheet" href="<c:url value='/resources/css/homepage.css' />">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">KLH Medical</div>
-            <ul>
+            <div class="logo-container">
+                <img src="<c:url value='/resources/images/klh-logo.jpg' />" alt="KLH Logo" class="klh-logo">
+                <div class="logo">Medical</div>
+            </div>
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <input type="checkbox" id="check">
+            <ul class="nav-menu">
                 <li><a href="#overview">Overview</a></li>
-                <li><a href="<c:url value='view-all-issues' />">Issues</a></li>
-                <li><a href="<c:url value='update-page' />">update</a></li>
+                <li><a href="<c:url value='view-issues-page' />">Issues</a></li>
+                <li><a href="<c:url value='update-page' />">Update</a></li>
                 <li><a href="<c:url value='profile-page' />">Profile</a></li>
                 <li><a href="<c:url value='/' />" class="btn-logout">Logout</a></li>
             </ul>
@@ -61,7 +68,7 @@
                     <a href="<c:url value='view-male-issues' />" class="btn-cta">View Male Issues</a>
                 </div>
                 <div class="feature">
-                    <a href="<c:url value='view-medical' />" class="btn-cta">View Medical</a>
+                    <a href="<c:url value='view-medical' />" class="btn-cta">Medical Inventory</a>
                 </div>
                 <div class="feature">
                     <a href="<c:url value='view-female-issues' />" class="btn-cta">View Female Issues</a>

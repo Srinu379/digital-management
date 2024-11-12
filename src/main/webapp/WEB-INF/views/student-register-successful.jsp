@@ -7,12 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Success</title>
-    <link rel="stylesheet" type="text/css" href="styles/success.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/student-register-successful.css">
 </head>
 <body>
     <div class="container">
+        <i class="fas fa-check-circle success-icon"></i>
         <h1>Student Registered Successfully!</h1>
-        <a href="<c:url value='e-homepage' />" class="home-link">Go Back to Home</a>
+        <a href="<c:url value='e-homepage' />" class="home-link">
+            <i class="fas fa-home"></i>Back to Home
+        </a>
     </div>
 </body>
 </html>

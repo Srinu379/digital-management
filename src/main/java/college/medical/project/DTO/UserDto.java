@@ -24,6 +24,46 @@ public class UserDto {
 	private String passWord;
 	
 	private String otp;
+	
+	private String gender;
+	
+	private String phoneNumber;
+	
+	private String age;
+
+	public RandomId getRandom() {
+		return random;
+	}
+
+	public void setRandom(RandomId random) {
+		this.random = random;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
 
 	public String getOtp() {
 		return otp;

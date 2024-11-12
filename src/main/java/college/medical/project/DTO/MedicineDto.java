@@ -6,6 +6,7 @@ public class MedicineDto {
 	private String medicineName;
 	private int quantity;
 	private String description;
+	private String expiryDate;
 	private String createdAt;
 	
 	public int getId() {
@@ -38,6 +39,14 @@ public class MedicineDto {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 	public String getCreatedAt() {

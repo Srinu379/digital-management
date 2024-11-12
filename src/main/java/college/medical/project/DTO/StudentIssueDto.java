@@ -7,6 +7,7 @@ public class StudentIssueDto {
 	private String department;
 	private String gender;
 	private String description;
+	private String medicines[];
 	private String medicine;
 	private String createdAt;
 	
@@ -40,12 +41,6 @@ public class StudentIssueDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getMedicine() {
-		return medicine;
-	}
-	public void setMedicine(String medicine) {
-		this.medicine = medicine;
-	}
 	public String getCreatedAt() {
 		return createdAt;
 	}
@@ -53,6 +48,33 @@ public class StudentIssueDto {
 		this.createdAt = createdAt;
 	}
 	
+	public String[] getMedicines() {
+		return medicines;
+	}
+	
+	public void setMedicines(String medicines[]) {
+		this.medicines = medicines;
+	}
+	
+	public String getMedicine() {
+		this.medicine = getAllMedicines();
+		return medicine;
+	}
+	
+	public void setMedicine(String medicine) {
+		this.medicine = medicine;
+	}
+	
+	public String getAllMedicines() {
+		StringBuffer allMedicines = new StringBuffer();
+		for(String medicine : medicines)
+		{
+			allMedicines.append(medicine);
+			allMedicines.append(" ");
+		}
+		System.out.println(allMedicines.toString() + "----------------------");
+		return allMedicines.toString();
+	}
 
 }
 

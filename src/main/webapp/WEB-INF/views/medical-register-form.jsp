@@ -11,17 +11,20 @@
 </head>
 <body>
     <div class="login-container">
-        <h2><i class="fas fa-laptop-code"></i>Medical Form</h2>
+        <h2><i class="fas fa-laptop-code"></i>Medicine Registration</h2>
       <form action="process-medical-form" method="post">
 	    
 	    <label for="userName">Medicine Name:</label>
-	    <input type="text" id="MedicineName" name="MedicineName">  
+	    <input type="text" id="MedicineName" name="MedicineName" required>  
 	    
 	    <label for="description">Quantity:</label>
-	    <input type="text" id="quantity" name="quantity">
+	    <input type="text" id="quantity" name="quantity" required>
 	    
 	     <label for="description">Description:</label>
-	    <textarea id="description" name="description"></textarea>
+	    <textarea id="description" name="description" required></textarea>
+	    
+	    <label for="expiryDate">Expiry Date:</label>
+	    <input id="expiryDate" name="expiryDate" required></input>
 	    
 	    <input type="submit" value="Submit">
 	</form>

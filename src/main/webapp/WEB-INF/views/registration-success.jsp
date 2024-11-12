@@ -12,16 +12,8 @@
     <div class="success-container">
         <h2>Registration Successful!</h2>
         <div class="success-message">
-            <p>Thank you for registering with Computer Hardware Service.</p>
+            <p>Thank you for registering with klh medical</p>
             <p>Your account has been created successfully.</p>
-        </div>
-        <div class="next-steps">
-            <h3>Next Steps:</h3>
-            <ul>
-                <li>Check your email for a confirmation link</li>
-                <li>Complete your profile information</li>
-                <li>Explore our services</li>
-            </ul>
         </div>
         <div class="action-buttons">
             <a href="<c:url value='/login' />" class="btn btn-primary">Login Now</a>

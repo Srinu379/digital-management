@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import college.medical.project.DAO.UserDaoImpl;
 import college.medical.project.DTO.MedicineDto;
@@ -20,11 +21,6 @@ public class MedicalPageController {
 	{
 		
 		List<MedicineDto> medicines = userDaoImpl.getMedicines();
-		
-		for(MedicineDto med : medicines)
-		{
-			System.out.println(med.getMedicineName()+med.getQuantity()+med.getDescription()+med.getCreatedAt());
-		}
 		
 		model.addAttribute("medicines",medicines);
 		
@@ -62,5 +58,30 @@ public class MedicalPageController {
 		
 		return "update-medicine-successful";
 	}
+	
+	@RequestMapping("/delete-medicine")
+	public String deleteMedicine(@RequestParam("id") int id,Model model)
+	{
+		
+		userDaoImpl.deleteMedicine(id);
+		
+		List<MedicineDto> medicines = userDaoImpl.getMedicines();
+		
+		model.addAttribute("medicines",medicines);
+		
+		return "medical";
+	}
+	
+	@RequestMapping("/search-medicine")
+	public String searchMedicine(@RequestParam("query") String medicineName,Model model)
+	{
+		
+	    MedicineDto medicine = userDaoImpl.getMedicine(medicineName);
+		
+		model.addAttribute("medicine",medicine);
+		
+		return "search-medical";
+	}
+	
 
 }
