@@ -217,7 +217,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public List<FacultyIssueDto> getAllFacultyIssues() {
 		
-		String sql = "select f.id,f.facultyName,f.department,i.description,i.medicines,i.createdAt from facultyissues i INNER JOIN faculty f on i.faculty_id = f.id";
+		String sql = "select f.id,f.facultyName,f.department,i.description,i.medicines,i.createdAt from FacultyIssues i INNER JOIN faculty f on i.faculty_id = f.id";
 		
 		List<FacultyIssueDto> FacultyIssueDto = jdbcTemplate.query(sql,new BeanPropertyRowMapper<FacultyIssueDto>(FacultyIssueDto.class));
 		
