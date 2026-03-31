@@ -324,6 +324,5 @@ B.Tech CSE — KLU Hyderabad
 
 ---
 
-## 📷 Screenshots
 
-*Add screenshots here*
+
