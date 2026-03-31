@@ -12,7 +12,7 @@ Manual sick-room record handling often leads to:
 * Difficulty in tracking patient history
 * Inefficient medicine inventory management
 
-This system solves these issues by providing a digital platform for managing patient visits and medicine usage efficiently.
+This system addresses these issues by providing a digital platform for managing patient visits and medicine usage efficiently.
 
 ---
 
@@ -50,12 +50,16 @@ Developed a centralized system where authorized medical staff can:
   * Faculty (Faculty ID)
   * Non-Teaching Staff (Staff ID)
 * Automatic check for existing patients before insertion
-* Stores visit details: name, department, gender, description, medicines, timestamp
+* Stores visit details including description, medicines, and timestamp
+
+---
 
 ### 📊 Filtering & Insights
 
 * Filter records by gender and category
 * View total, male, and female visit counts
+
+---
 
 ### 💊 Medicine Inventory System
 
@@ -67,6 +71,8 @@ Developed a centralized system where authorized medical staff can:
   * 🔴 Low stock
   * 🟢 Sufficient stock
 * Supports add, update, and delete operations
+
+---
 
 ### 🔐 Security
 
@@ -103,8 +109,6 @@ Client → Controller → Service → DAO → Database → Response
 
 ## 🗂️ Project Structure
 
-The project follows a layered architecture for separation of concerns:
-
 ```
 src/main/java/college/medical/project/
 ├── controllers/     → Handles HTTP requests and routing
@@ -114,29 +118,121 @@ src/main/java/college/medical/project/
 
 src/main/webapp/
 ├── WEB-INF/
-│   ├── views/       → JSP pages (secured, not directly accessible)
+│   ├── views/       → JSP pages (secured)
 │   ├── web.xml      → Dispatcher configuration
 │   └── beans.xml    → Spring configuration
 └── resources/       → Static files (CSS, JS)
 ```
 
-### 📌 Design Highlights
+---
 
-* Follows **MVC architecture** with clear separation of concerns
-* Uses **DAO pattern** for database abstraction
-* JSP files inside `WEB-INF` for security
-* Centralized configuration using `beans.xml` and `web.xml`
+## 🗄️ Database Schema
+
+### 👤 Users Table
+
+Stores medical staff login details.
+
+| Column      | Description          |
+| ----------- | -------------------- |
+| id          | Unique user ID       |
+| email       | Login email          |
+| userName    | Username             |
+| passWord    | Password             |
+| gender      | Gender               |
+| phoneNumber | Contact number       |
+| age         | Age                  |
+| lastLogin   | Last login timestamp |
 
 ---
 
-## 🗄️ Database Design
+### 🎓 Students Table
 
-Core tables:
+| Column      | Description       |
+| ----------- | ----------------- |
+| rollNo      | Unique student ID |
+| studentName | Name              |
+| department  | Department        |
+| gender      | Gender            |
 
-* `users` → authentication
-* `Students`, `faculty`, `NonTeachingStaff` → entities
-* `Issues`, `FacultyIssues`, `NonTeachingStaffIssues` → visit logs
-* `Medicines` → inventory
+---
+
+### 👨‍🏫 Faculty Table
+
+| Column      | Description |
+| ----------- | ----------- |
+| id          | Faculty ID  |
+| facultyName | Name        |
+| department  | Department  |
+| gender      | Gender      |
+
+---
+
+### 🧑‍🔧 Non-Teaching Staff Table
+
+| Column      | Description |
+| ----------- | ----------- |
+| id          | Staff ID    |
+| facultyName | Name        |
+| department  | Department  |
+| gender      | Gender      |
+
+---
+
+### 🩺 Student Issues Table (`Issues`)
+
+| Column      | Description                |
+| ----------- | -------------------------- |
+| id          | Issue ID                   |
+| rollNo      | References Students.rollNo |
+| description | Medical issue              |
+| medicines   | Medicines given            |
+| createdAt   | Timestamp                  |
+
+---
+
+### 🩺 Faculty Issues Table (`FacultyIssues`)
+
+| Column      | Description           |
+| ----------- | --------------------- |
+| id          | Issue ID              |
+| faculty_id  | References faculty.id |
+| description | Medical issue         |
+| medicines   | Medicines given       |
+| createdAt   | Timestamp             |
+
+---
+
+### 🩺 Staff Issues Table (`NonTeachingStaffIssues`)
+
+| Column      | Description                    |
+| ----------- | ------------------------------ |
+| id          | Issue ID                       |
+| faculty_id  | References NonTeachingStaff.id |
+| description | Medical issue                  |
+| medicines   | Medicines given                |
+| createdAt   | Timestamp                      |
+
+---
+
+### 💊 Medicines Table
+
+| Column       | Description     |
+| ------------ | --------------- |
+| id           | Medicine ID     |
+| MedicineName | Name            |
+| quantity     | Available stock |
+| description  | Details         |
+| expiryDate   | Expiry date     |
+
+---
+
+## 🔗 Relationships
+
+* One **Student → Many Issues**
+* One **Faculty → Many Issues**
+* One **Staff → Many Issues**
+* Issues linked via foreign keys (`rollNo`, `faculty_id`)
+* Medicines tracked and deducted during issue creation
 
 ---
 
@@ -181,8 +277,7 @@ docker run -p 8080:8080 \
 digital-management-app
 ```
 
-Access the application at:
-http://localhost:8080
+Access at: http://localhost:8080
 
 ---
 
@@ -195,17 +290,10 @@ http://localhost:8080
 
 ## ⚙️ Challenges & Solutions
 
-* **Problem:** Preventing invalid medicine usage
-  **Solution:** Implemented stock validation before registration
-
-* **Problem:** Duplicate patient records
-  **Solution:** Added existence check before insertion
-
-* **Problem:** Managing multiple user categories
-  **Solution:** Designed structured modules for each category
-
-* **Problem:** Secure database configuration
-  **Solution:** Used environment variables instead of hardcoding credentials
+* Preventing invalid medicine usage → Implemented stock validation
+* Avoiding duplicate patient records → Added existence checks
+* Managing multiple user categories → Structured modular design
+* Secure DB configuration → Used environment variables
 
 ---
 
@@ -213,16 +301,16 @@ http://localhost:8080
 
 * Medicine names are case-sensitive
 * No pagination for large datasets
-* Cold start delay on free hosting (1–2 minutes)
+* Cold start delay on free hosting
 
 ---
 
 ## 📌 Key Takeaways
 
-* Built with focus on clean architecture and data consistency
-* Demonstrates strong backend fundamentals using Spring MVC
-* Implements real-world workflow optimization
-* Shows practical use of Docker for deployment
+* Demonstrates strong backend development using Spring MVC
+* Implements relational database design with multiple entities
+* Solves a real-world workflow problem
+* Uses Docker for deployment consistency
 
 ---
 
@@ -233,3 +321,9 @@ B.Tech CSE — KLU Hyderabad
 
 * GitHub: https://github.com/Srinu379
 * LinkedIn: https://linkedin.com/in/srinivas-vanam-79a72829b
+
+---
+
+## 📷 Screenshots
+
+*Add screenshots here*
