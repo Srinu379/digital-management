@@ -321,8 +321,3 @@ B.Tech CSE — KLU Hyderabad
 
 * GitHub: https://github.com/Srinu379
 * LinkedIn: https://linkedin.com/in/srinivas-vanam-79a72829b
-
----
-
-
-
